@@ -3,20 +3,20 @@ package com.bridgelabz.algorithmproblems;
 import java.util.Scanner;
 import java.lang.String;
 
-public class InsertionSort {
+public class InsertionSort<T extends Comparable <T>> {
 	
-	private void printArray(String[] array,int sizeOfArray)
+	private void printArray(T[] array,int sizeOfArray)
 	{
 		for(int index =0 ;index<sizeOfArray;index++)
 		{
 			System.out.println(array[index]);
 		}	
 	}
-	public void insertionSort(String[] array) {
+	public void insertionSort(T[] array) {
 
 		int sizeOfArray = array.length;
 		for (int index = 1; index < sizeOfArray; ++index) {
-			String current = array[index];
+			T current = array[index];
 			int previousIndex = index - 1;
 			
 			while (previousIndex >= 0 && array[previousIndex].compareTo(current)>0) {
@@ -32,7 +32,7 @@ public class InsertionSort {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
-		InsertionSort sortObject = new InsertionSort();
+		InsertionSort<String> sortObject = new InsertionSort<String>();
 		
 		System.out.println("Enter the size of the array");
 		int sizeOfArray = scanner.nextInt();
