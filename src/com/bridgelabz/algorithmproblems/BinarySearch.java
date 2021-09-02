@@ -46,7 +46,6 @@ public class BinarySearch<T extends Comparable <T>>
 
 	}
 
-
 }
 
 
