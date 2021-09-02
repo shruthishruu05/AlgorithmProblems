@@ -1,17 +1,18 @@
 package com.bridgelabz.algorithmproblems;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BubbleSort 
+public class BubbleSort<T extends Comparable <T>> 
 {
-	private void printArray(int[] array,int sizeOfArray)
+	private void printArray(T[] array,int sizeOfArray)
 	{
 		for(int index =0 ;index<sizeOfArray;index++)
 		{
 			System.out.println(array[index]);
 		}	
 	}
-	private void bubbleSort(int[] array) 
+	private void bubbleSort(T[] array) 
 	{
 		
 	        int sizeOfArray = array.length;
@@ -19,9 +20,9 @@ public class BubbleSort
 	        {
 	            for (int index2 = 0; index2 < sizeOfArray-index1-1; index2++)
 	            {
-	                if (array[index2] > array[index2+1])
+	                if (array[index2].compareTo(array[index2+1])>0)
 	                {
-	                    int temprory = array[index2];
+	                    T temprory = array[index2];
 	                    array[index2] = array[index2+1];
 	                    array[index2+1] = temprory;
 	                }
@@ -33,11 +34,11 @@ public class BubbleSort
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
-		BubbleSort sortObject = new BubbleSort();
+		BubbleSort<Integer> sortObject = new BubbleSort<Integer>();
 		
 		System.out.println("Enter the size of the array");
 		int sizeOfArray = scanner.nextInt();
-		int[] array = new int[sizeOfArray];
+		Integer[] array = new Integer[sizeOfArray];
 		
 		System.out.println("Enter the array elements");
 		for(int index =0 ; index < sizeOfArray; index++)
