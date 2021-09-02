@@ -1,89 +1,91 @@
 package com.bridgelabz.algorithmproblems;
 
-import java.util.Scanner;
+import java.util.*;
 
-public class MergeSort {
-
-	void merge(String array[], int left, int middle, int right) {
+public class MergeSort<E extends Comparable <E>> 
+{
+		public void printArray(E[] array)
+		{
+			int sizeOfArray = array.length;
+			for (int index = 0; index < sizeOfArray; index++)
+			{
+				System.out.print(array[index] + " ");
+			}
+		}
+		void merge( E array[], int left, int middle, int right) 
+		{
 
 		int sizeOfLeft = middle - left + 1;
 		int sizeOfRight = right - middle;
 
-		String leftArray[] = new String[sizeOfLeft];
-		String rightArray[] = new String[sizeOfRight];
+		E[] leftArray = (E[]) new Comparable[sizeOfLeft];
+		E[] rightArray = (E[]) new Comparable[sizeOfLeft];
 
-		for (int leftArrayIndex = 0; leftArrayIndex < sizeOfLeft; ++leftArrayIndex)
-			leftArray[leftArrayIndex] = array[left + leftArrayIndex];
+		for (int leftIndex = 0; leftIndex < sizeOfLeft; leftIndex++)
+			leftArray[leftIndex] = array[left + leftIndex];
 
-		for (int rightArrayIndex = 0; rightArrayIndex < sizeOfRight; ++rightArrayIndex)
-			rightArray[rightArrayIndex] = array[middle + 1 + rightArrayIndex];
+		for (int rightIndex = 0; rightIndex < sizeOfRight; rightIndex++)
+			rightArray[rightIndex] = array[middle + 1 + rightIndex];
 
 		int index1 = 0, index2 = 0;
-		int sortedArrayindex = left;
+		int sortedindex = left;
 
 		while (index1 < sizeOfLeft && index2 < sizeOfRight) {
 			if (leftArray[index1].compareTo(rightArray[index2]) <= 0) {
-				array[sortedArrayindex] = leftArray[index1];
+				array[sortedindex] = leftArray[index1];
 				index1++;
 			} else {
-				array[sortedArrayindex] = rightArray[index2];
+				array[sortedindex] = rightArray[index2];
 				index2++;
 			}
-			sortedArrayindex++;
+			sortedindex++;
 		}
 
 		while (index1 < sizeOfLeft) {
-			array[sortedArrayindex] = leftArray[index1];
+			array[sortedindex] = leftArray[index1];
 			index1++;
-			sortedArrayindex++;
+			sortedindex++;
 		}
 
 		while (index2 < sizeOfRight) {
-			array[sortedArrayindex] = rightArray[index2];
+			array[sortedindex] = rightArray[index2];
 			index2++;
-			sortedArrayindex++;
+			sortedindex++;
 		}
 	}
 
-	void mergeSort(String wordArray[], int left, int right) {
+	
+	void mergeSort(E array[], int left, int right) {
 		if (left < right) {
 
 			int middle = left + (right - left) / 2;
-			mergeSort(wordArray, left, middle);
-			mergeSort(wordArray, middle + 1, right);
-			merge(wordArray, left, middle, right);
+			mergeSort(array, left, middle);
+			mergeSort(array, middle + 1, right);
+			merge(array, left, middle, right);
 		}
 
-	}
-
-	public void printArray(String[] wordArray) {
-		int sizeOfArray = wordArray.length;
-		for (int index = 0; index < sizeOfArray; index++) {
-			System.out.print(wordArray[index] + " ");
-		}
 	}
 
 	public static void main(String[] args) {
 
-		MergeSort sortObject = new MergeSort();
-		Scanner scannerObject = new Scanner(System.in);
+		MergeSort<String> sortObject = new MergeSort<String>();
+		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Enter the number of words: ");
-		int sizeOfArray = scannerObject.nextInt();
+		int sizeOfArray = scanner.nextInt();
 		String[] array = new String[sizeOfArray];
 
-		System.out.println("Enter words");
+		System.out.println("Enter the number of words to perform sorting");
 		for (int index = 0; index < sizeOfArray; index++) {
-			String word = scannerObject.next();
+			String word = scanner.next();
 			array[index] = word;
 		}
 
-		System.out.println("The array of words are : ");
+		System.out.println("The array of words");
 		sortObject.printArray(array);
-		System.out.println("");
 		sortObject.mergeSort(array, 0, sizeOfArray - 1);
 
-		System.out.println("The sorted array is : ");
+		System.out.println("The sorted array of words is");
 		sortObject.printArray(array);
 
 	}
