@@ -22,9 +22,9 @@ public class BubbleSort<T extends Comparable <T>>
 	            {
 	                if (array[index2].compareTo(array[index2+1])>0)
 	                {
-	                    T temprory = array[index2];
+	                    T temporary = array[index2];
 	                    array[index2] = array[index2+1];
-	                    array[index2+1] = temprory;
+	                    array[index2+1] = temporary;
 	                }
 	            }
 	        }
