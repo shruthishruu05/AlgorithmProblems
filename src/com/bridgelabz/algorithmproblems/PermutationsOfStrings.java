@@ -56,5 +56,5 @@ public class PermutationsOfStrings
 		findPermutationIteratively(word);
 		System.out.println("The permutation obtained through recursive approach -->");
 		findPermutationRecursively(" ",word);
-		}
+	}
 }
