@@ -1,33 +1,63 @@
 package com.bridgelabz.algorithmproblems;
-
-public class BinarySearch 
+import java.util.ArrayList;
+import java.util.Scanner;
+public class BinarySearch<T extends Comparable <T>>
 {
-	private int binarySearch(int[] array,int lowerIndex,int upperIndex,int searchValue)
+	private int binarySearch(ArrayList<T> array,int lowerIndex,int upperIndex,T searchValue)
 	{
 		if(upperIndex>=lowerIndex)
 		{
 			int midIndex = lowerIndex+ (upperIndex- lowerIndex )/2;
-			if(array[midIndex]==searchValue)
+			if(array.get(midIndex).equals(searchValue))
+			{
 				return midIndex;
-			
-			if(array[midIndex]<searchValue)
+			}
+			if(array.get(midIndex).compareTo(searchValue)>0)
+			{
 				return binarySearch(array, midIndex+1, upperIndex, searchValue);
-			if(array[midIndex]>searchValue)
+			}
 				return binarySearch(array, lowerIndex, midIndex-1, searchValue);
 
 		}
 		return -1;
 	}
 	public static void main(String[] args) {
-		System.out.println("Binary search program");
-		int array[]= {5,8,11,16,20,25,30,44,50};
-		int arrayLength = array.length;
-		int searchValue = 8;
-		BinarySearch binarySearchObject = new BinarySearch();
-		int searchResult = binarySearchObject.binarySearch(array,0,arrayLength-1,searchValue);
-		if(searchValue == -1)
-			System.out.println("Value not found");
-		else 
-			System.out.println("value found at index  " +searchResult);
+		System.out.println("Welcome to Binary search program");
+		Scanner scanner = new Scanner(System.in);
+		BinarySearch<Integer> searchObject = new BinarySearch<Integer>();
+		ArrayList<Integer> arrayToBeSearched = new ArrayList<Integer>();
+		
+		System.out.println("Enter the size of The Array");
+		int sizeOfArray = scanner.nextInt();
+		
+		System.out.println("Enter Array Elements in sorted order to perform binary search");
+		for (int index = 0; index < sizeOfArray; index++) {
+			Integer word = scanner.nextInt();
+			arrayToBeSearched.add(word);
+		}
+
+		System.out.println("Enter the element to be searched");
+		Integer ElementToSearch = scanner.nextInt();
+		scanner.close();
+		
+		System.out.println("The array is : " + arrayToBeSearched);
+		int indexOfWord = searchObject.binarySearch(arrayToBeSearched, 0, sizeOfArray-1, ElementToSearch);
+		System.out.println("Element " + ElementToSearch + " found at index: " + indexOfWord);
+
 	}
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
